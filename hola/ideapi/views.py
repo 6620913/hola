@@ -5,19 +5,20 @@ from rest_framework.response import Response
 from . serializer import *
 # Create your views here.
   
-class ProblemsView(APIView):
+class IdeView(APIView):
     
-    serializer_class = ProblemsSerializer
+    serializer_class = IdeSerializer
   
     def get(self, request):
-        detail = [ {"Book": detail.book,"Chapter": detail.chapter,"Problem":detail.problem} 
-        for detail in Problems.objects.all()]
+        detail = [ {"Submission":Submission} 
+        for detail in Ide.objects.all()]
         return Response(detail)
   
     def post(self, request):
   
-        serializer = ProblemsSerializer(data=request.data)
+        serializer = IdeSerializer(data=request.data)
        
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            # serializer.save()
+            print(serializer.data)
             return  Response(serializer.data)
