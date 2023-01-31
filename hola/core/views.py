@@ -20,4 +20,5 @@ class ProblemsView(APIView):
        
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+            # print(serializer.data['book'])
             return  Response(serializer.data)

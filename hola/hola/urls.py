@@ -2,11 +2,13 @@
 from django.contrib import admin
 from django.urls import path, include
 # from django.conf.urls import urls
-from core.views import *
-from ideapi.views import *
+from core import views as cv
+
   
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('problems/', ProblemsView.as_view(), name="problems"),
-    path('ide/',IdeView.as_view(),name="ide")
+    
+    path('problems/', cv.ProblemsView.as_view(), name="problems"),
+    # path('ide/', idev.IdeView.as_view(), name="ide"),
+   
 ]

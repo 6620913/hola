@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'core',
     'corsheaders', 
-    'ideapi',
+    
 ]
 
 MIDDLEWARE = [
