@@ -22,10 +22,10 @@ const [userTheme, setUserTheme] = useState("vs-dark");
 const [fontSize, setFontSize] = useState(20);
 
 // State variable to set users input
-const [userInput, setUserInput] = useState("");
+const [userInput, setUserInput] = useState("write input here");
 
 // State variable to set users output
-const [userOutput, setUserOutput] = useState("");
+const [userOutput, setUserOutput] = useState("Output will be here");
 
 // Loading state variable to show spinner
 // while fetching data
@@ -42,13 +42,23 @@ function compile() {
 	return
 	}
 
+	let formField = new FormData()
+	
+	formField.append('userLang', userLang)
+	formField.append('userInput', userInput)
+	formField.append('userCode', userCode)
+	
 	// Post request to compile endpoint
-	Axios.post('http://localhost:8000/compile', {
-	code: userCode,
-	language: userLang,
-	input: userInput }).then((res) => {
-	setUserOutput(res.data.output);
-	}).then(() => {
+	Axios( {
+	method:'post',
+	url:'http://localhost:8000/compiler/',
+data:formField	
+}).then((res) => {
+	console.log(res.data)
+
+	
+
+	setUserOutput(res.data);
 	setLoading(false);
 	})
 }
@@ -60,6 +70,7 @@ function clearOutput() {
 
 return (
 	<div className="App">
+
 	<Navbar
 		userLang={userLang} setUserLang={setUserLang}
 		userTheme={userTheme} setUserTheme={setUserTheme}
@@ -84,14 +95,15 @@ return (
 		<div className="right-container">
 		<h4>Input:</h4>
 		<div className="input-box">
-			<textarea id="code-inp" onChange=
+			<textarea id="code-inp" required onChange=
 			{(e) => setUserInput(e.target.value)}>
 			</textarea>
 		</div>
 		<h4>Output:</h4>
 		{loading ? (
 			<div className="spinner-box">
-			<img src={spinner} alt="Loading..." />
+				<h1 style={{color:"white"}}>Loading...</h1>
+			{/* <img src={spinner} alt="Loading..." /> */}
 			</div>
 		) : (
 			<div className="output-box">

@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
 	display: flex;
 	align-items: center;
 	padding-left: 20px;
@@ -8,7 +8,8 @@
 	background-color: #474747;
 	gap: 20px;
 }
-#no{
+
+#no {
 	height: 36px;
 	width: 80px;
 	font-size: 16px;
@@ -17,15 +18,18 @@
 	border-radius: 4px;
 	background-color: #474747;
 }
-#no:focus{
+
+#no:focus {
 	outline: none;
 }
-.css-2b097c-container{
+
+.css-2b097c-container {
 	width: 120px;
 	color: black;
 	background-color: #474747;
 }
-.css-yk16xz-control{
+
+.css-yk16xz-control {
 	background-color: #474747 !important;
 	border-color: #afec3f !important;
 }
