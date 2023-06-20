@@ -1,24 +1,63 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from . models import *
-from rest_framework.response import Response
-from . serializer import *
+# from django.shortcuts import render
+# from rest_framework.views import APIView
+# from . models import *
+# from rest_framework.response import Response
+# from . serializer import *
 # Create your views here.
   
-class ProblemsView(APIView):
-    
+from .models import *
+from . serializer import *
+from rest_framework import generics
+
+
+class ProblemList(generics.ListCreateAPIView):
+    queryset = Problems.objects.all()
     serializer_class = ProblemsSerializer
+
+
+class ProblemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Problems.objects.all()
+    serializer_class = ProblemsSerializer
+
+
+# class ProblemsView(APIView):
+    
+#     serializer_class = ProblemsSerializer
+#     def get_object(self, id):
+#         try:
+#             return Problems.objects.get(id=id)
+#         except Problems.DoesNotExist:
+#             pass
+
+#     def get(self, request, id, format=None):
+#         snippet = self.get_object(id)
+#         serializer = ProblemsSerializer(snippet)
+#         return Response(serializer.data)
+
+#     def put(self, request, id, format=None):
+#         snippet = self.get_object(id)
+#         serializer = ProblemsSerializer(snippet, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+        
+
+#     def delete(self, request, id, format=None):
+#         snippet = self.get_object(id)
+#         snippet.delete()
+        
+#     def get(self, request):
+#         detail = [ {"id":detail.id,"Book": detail.book,"Chapter": detail.chapter,"Problem":detail.problem} 
+#         for detail in Problems.objects.all()]
+#         return Response(detail)
   
-    def get(self, request):
-        detail = [ {"Book": detail.book,"Chapter": detail.chapter,"Problem":detail.problem} 
-        for detail in Problems.objects.all()]
-        return Response(detail)
+
+
+#     def post(self, request):
   
-    def post(self, request):
-  
-        serializer = ProblemsSerializer(data=request.data)
+#         serializer = ProblemsSerializer(data=request.data)
        
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            print(serializer.data['book'])
-            return  Response(serializer.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save()
+#             print(serializer.data['book'])
+#             return  Response(serializer.data)

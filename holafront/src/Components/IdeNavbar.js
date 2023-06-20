@@ -15,18 +15,30 @@ const Navbar = ({userLang, setUserLang, userTheme,
 		{ value: "light", label: "Light" },
 	]
 	return (
-		<div className="navbar">
-			<h1>Geeks Code Compiler</h1>
-			<Select options={languages} value={userLang}
+
+		<div className='ide-navbar-container'>
+		<div className="ide-navbar">
+			{/* <h1>Geeks Code Compiler</h1> */}
+		
+		<div className='ide-select'>
+			<div>	<Select options={languages} value={userLang}
 					onChange={(e) => setUserLang(e.value)}
-					placeholder={userLang} />
-			<Select options={themes} value={userTheme}
+					placeholder={userLang} /></div>
+		<div>	<Select options={themes} value={userTheme}
 					onChange={(e) => setUserTheme(e.value)}
-					placeholder={userTheme} />
+					placeholder={userTheme} /></div>
+		
+
+			</div>
+			<div className='ide-font'>
 			<label>Font Size</label>
 			<input type="range" min="18" max="30"
 				value={fontSize} step="2"
 				onChange={(e) => { setFontSize(e.target.value)}}/>
+			</div>
+
+
+		</div>
 		</div>
 	)
 }
