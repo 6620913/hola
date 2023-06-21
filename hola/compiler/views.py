@@ -22,15 +22,32 @@ class CompilerView(APIView):
     def post(self, request):
   
         serializer = CompilerSerializer(data=request.data)
-        output_value=""
+        output_value="No  output "
         if serializer.is_valid(raise_exception=True):
             # Create a stream to capture the output
-            output = sys.stdout
-            sys.stdout = captured_output = StringIO()
+           
             # Execute the code
             try:
+                # capture standard output
+                output = sys.stdout
+                sys.stdout = captured_output = StringIO()
+
+                #set input to be read from userInput
+                sysin = sys.stdin
+                sys.stdin=StringIO(serializer.data["userInput"])
+
+                # execute code
                 exec(serializer.data["userCode"])
+
+               
+                
                 output_value = captured_output.getvalue()
+
+                 # reset standard input and output
+                sys.stdin=sysin
+                sys.stdout=output
+                print("input and output replaced")
+
             except Exception as error:
                 output_value = str(error)
                 
@@ -40,5 +57,5 @@ class CompilerView(APIView):
             
             # serializer.save()
             # serializer.data["output":output_value]
-            print(serializer.data['userLang'])
+            print("code executed in ",serializer.data['userLang'])
             return  Response(output_value)

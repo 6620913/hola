@@ -19,6 +19,7 @@ function App() {
 
 
 	// State variable to set users source code
+	const [Id, setId] = useState(0)
 	const [userCode, setUserCode] = useState(``);
 
 	// State variable to set editors default language
@@ -31,7 +32,8 @@ function App() {
 	const [fontSize, setFontSize] = useState(20);
 
 	// State variable to set users input
-	const [userInput, setUserInput] = useState("write input here");
+	const [userInput, setUserInput] = useState("Input will be here");
+	const [userInputType, setUserInputType] = useState("1value")
 
 	// State variable to set users output
 	const [userOutput, setUserOutput] = useState("Output will be here");
@@ -85,11 +87,13 @@ function App() {
 				setState({
 					details: data
 				});
+				// On landing it will set id for compile to params.IDE
+				setId(params.IDE)
 			})
 			.catch(err => {
 				console.log(err)
-				if(params.IDE!="ide")
-				setNotFound(true)
+				if (params.IDE !== "ide")
+					setNotFound(true)
 			})
 
 	}
@@ -108,17 +112,22 @@ function App() {
 			return
 		}
 
-		let formField = new FormData()
-
-		formField.append('userLang', userLang)
-		formField.append('userInput', userInput)
-		formField.append('userCode', userCode)
+		console.log("enterd")
+		// let formField = new FormData()
+		// formField.append('id',Id)
+		// formField.append('userLang', userLang)
+		// formField.append('userInput', userInput)
+		// formField.append('userInputType',userInputType)
+		// formField.append('userCode', userCode)
 
 		// Post request to compile endpoint
+
+
 		Axios({
 			method: 'post',
 			url: 'http://localhost:8000/compiler/',
-			data: formField
+			data: { 'id': Id, 'userLang': userLang, 'userInput': userInput, 'userInputType': userInputType, 'userCode': userCode }
+
 		}).then((res) => {
 			console.log(res.data)
 
@@ -127,6 +136,12 @@ function App() {
 			setUserOutput(res.data);
 			setLoading(false);
 		})
+			.catch(err => {
+				console.log(err)
+
+			})
+
+		console.log("axious end")
 	}
 
 	// Function to clear the output screen
@@ -136,24 +151,24 @@ function App() {
 
 	return (
 		<div className="ide">
-<div className='logo'>
-							<NavLink to="/" activeStyle>
-								Home
-							</NavLink>
-						</div>
+			<div className='ide-home' >
+				<NavLink style={{ textDecoration: "none", color: "white",fontSize:"16px" }} to="/" activeStyle>
+					Home
+				</NavLink>
+			</div>
 
 			{notFound ? (<div>Not found </div>) : (
-				
+
 				<div className="ide-main">
-					
-					<div className="ide-left-container" style={{ display: ((params.IDE == "ide") ? ("none") : ("flex")) }} >
-						
+
+					<div className="ide-left-container" style={{ display: ((params.IDE === "ide") ? ("none") : ("flex")) }} >
+
 
 						<div className='problem-disc'>
 
 							<div className='problem-txt'>{state.details.id}{". "} {state.details.problem}</div>
 
-							
+
 
 
 						</div>
@@ -164,26 +179,26 @@ function App() {
 
 					</div>
 
-					<div className="ide-right-container" style={{ width: (params.IDE == "ide" ? ("100vw") : ("60%")) }}>
+					<div className="ide-right-container" style={{ width: (params.IDE === "ide" ? ("99vw") : ("60%")) }}>
 
 
 
 						<div className='ide-navbar'>
-							<Navbar
+							<Navbar 
 								userLang={userLang} setUserLang={setUserLang}
 								userTheme={userTheme} setUserTheme={setUserTheme}
 								fontSize={fontSize} setFontSize={setFontSize}
 							/>
 						</div>
 
-						<div className='ide-editor'>
+						<div className='ide-editor' style={{backgroundColor: userTheme==="light"?"white":"black"}}>
 
 							<Editor id="ide-editor"
 								options={options}
-								height="64vh"
+								height="63vh"
 								width="100%"
 
-								
+
 								theme={userTheme}
 								language={userLang}
 								defaultLanguage="python"
@@ -196,8 +211,8 @@ function App() {
 						</div>
 
 						<div className='ide-display'>
-							<button onClick={setInput}>input</button>
-							<button onClick={setOutput}>output</button>
+							<button className='iobtn' onClick={setInput}>input</button>
+							<button className='iobtn' onClick={setOutput}>output</button>
 							{inputOutput ? (
 								<div className='ide-display-box'>
 
@@ -227,7 +242,7 @@ function App() {
 
 						<div className='ide-btn'>
 
-							<button onClick={() => compile()}>
+							<button className='rbtn' onClick={() => compile()}>
 								Run
 							</button>
 						</div>

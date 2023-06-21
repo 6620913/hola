@@ -20,6 +20,16 @@
 
 
 
+/* ide-navbar */
+
+.ide-home{
+    margin: 2px;
+    background-color: rgb(6, 78, 76);
+    padding: 5px;
+}
+
+/* idenavbar end */
+
 
 
 
@@ -46,8 +56,12 @@ font-family: Arial, Helvetica, sans-serif;
 
 /* ide-editor */
 
-.ide-editor Editor{
+.ide-editor{
+    margin: 5px;
+    padding: 5px;
+    background-color: black;
     border-radius: 10px;
+
 }
 
 
@@ -78,7 +92,24 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 
+/* buttons */
 
+.iobtn{
+
+    border-radius: 5px;
+    background-color: rgb(6, 78, 76);
+    color: white;
+    padding: 2px 25px;
+    margin-right: 10px;
+
+
+}
+.rbtn{
+    background-color: rgb(86, 134, 237);
+    border-radius: 5px;
+    color: white;
+    padding: 2px 25px;
+}
 
 
 
