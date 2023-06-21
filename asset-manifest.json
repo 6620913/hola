@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/hola.github.io/static/css/main.719ed917.css",
-    "main.js": "/hola.github.io/static/js/main.7ec891bf.js",
+    "main.css": "/hola.github.io/static/css/main.edeb43ac.css",
+    "main.js": "/hola.github.io/static/js/main.f2ed9fb6.js",
     "static/js/787.1e854e39.chunk.js": "/hola.github.io/static/js/787.1e854e39.chunk.js",
     "static/media/spinner.svg": "/hola.github.io/static/media/spinner.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/hola.github.io/index.html",
-    "main.719ed917.css.map": "/hola.github.io/static/css/main.719ed917.css.map",
-    "main.7ec891bf.js.map": "/hola.github.io/static/js/main.7ec891bf.js.map",
+    "main.edeb43ac.css.map": "/hola.github.io/static/css/main.edeb43ac.css.map",
+    "main.f2ed9fb6.js.map": "/hola.github.io/static/js/main.f2ed9fb6.js.map",
     "787.1e854e39.chunk.js.map": "/hola.github.io/static/js/787.1e854e39.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.719ed917.css",
-    "static/js/main.7ec891bf.js"
+    "static/css/main.edeb43ac.css",
+    "static/js/main.f2ed9fb6.js"
   ]
 }
