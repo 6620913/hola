@@ -30,12 +30,14 @@ const Navbar = () => {
 									IDE
 								</NavLink></a>
 							</li>
-							<li class="nav-item">
+
+
+							{/* <li class="nav-item">
 								<a class="nav-link" href="#" ><NavLink style={{textDecoration:"none",color:"white"}} to="/signup" activeStyle>
 									Sign Up
 								</NavLink></a>
 
-							</li>
+							</li> */}
 
 							<li class="nav-item">
 								<a class="nav-link" href="#">
