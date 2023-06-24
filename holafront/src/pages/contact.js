@@ -15,11 +15,11 @@ return (
 
 <div className='contact-content container' >
 
-	<div className='topic-head' ><h1>Contact/{'>'}</h1></div>
+	
 
 	<div className='contactinfo'>
 		{/* <h4 >Find me on</h4> */}
-
+<div className='topic-head' ><h1>Contact/{'>'}</h1></div>
 
 		<div className='contact-row'>
 				

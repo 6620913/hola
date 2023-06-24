@@ -16,7 +16,7 @@ class App extends React.Component {
 	componentDidMount() {
 
 		let data;
-		
+
 
 		axios.get('http://localhost:8000/problems/')
 			.then(res => {
@@ -25,7 +25,9 @@ class App extends React.Component {
 					details: data
 				});
 			})
-			.catch(err => { })
+			.catch(err => { 
+				console.log(err)
+			})
 	}
 
 	render() {
@@ -35,24 +37,22 @@ class App extends React.Component {
 
 
 				<div className='container'>
-				
+
 					<div className='problemlist'>
-					
-							{this.state.details.map((detail, id) => (
-								<div className='problem'  key={id}>
-									{/* <h1>{detail.Book} </h1> */}
-									{/* <h2>{detail.Chapter}</h2> */}
-							
-								<NavLink to={"/"+detail.id} style={{textDecoration:"None",color:"black"}}>
-									{detail.id}{". "}{detail.problem}
-								</NavLink>
-									
-								
+						
+							{this.state.details.map((detail,id) => (
+								<div className='problem' key={id}>
+
+										<NavLink to={"/" + detail.id} style={{ textDecoration: "None",color:"white"}}>
+											{detail.id}{". "}{detail.problem}
+										</NavLink>
+						
 								</div>
 							)
 
 							)}
-						
+					
+
 
 					</div>
 				</div>

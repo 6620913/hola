@@ -11,7 +11,7 @@ const Home = () => {
 			<Navbar></Navbar>
 
 
-			<div className='intro'>
+			<div className='intro container'>
 				<div className='intro-content'>
 					<p>Start/{'>'}</p>
 					<div className='info'> Hi, <span className='sp'></span> </div>

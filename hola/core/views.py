@@ -19,6 +19,24 @@ class ProblemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Problems.objects.all()
     serializer_class = ProblemsSerializer
 
+class ProjectList(generics.ListCreateAPIView):
+    queryset = Projects.objects.all()
+    serializer_class = ProjectsSerializer
+
+
+class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Projects.objects.all()
+    serializer_class = ProjectsSerializer
+
+class SkillList(generics.ListCreateAPIView):
+    queryset = Skills.objects.all()
+    serializer_class = ProjectsSerializer
+
+
+class SkillDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Skills.objects.all()
+    serializer_class = ProjectsSerializer
+
 
 # class ProblemsView(APIView):
     

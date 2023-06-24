@@ -20,13 +20,13 @@ function App() {
 
 	// State variable to set users source code
 	const [Id, setId] = useState(0)
-	const [userCode, setUserCode] = useState(``);
+	const [userCode, setUserCode] = useState("#Enter your code here");
 
 	// State variable to set editors default language
 	const [userLang, setUserLang] = useState("python");
 
 	// State variable to set editors default theme
-	const [userTheme, setUserTheme] = useState("vs-dark");
+	const [userTheme, setUserTheme] = useState("light");
 
 	// State variable to set editors default font size
 	const [fontSize, setFontSize] = useState(20);
@@ -44,9 +44,12 @@ function App() {
 
 
 	const [inputOutput, setInputOutput] = useState(true);
-	const [IDEstyle, setIDEStyle] = useState(true);
+
 
 	const [notFound, setNotFound] = useState(false);
+
+	const [reload, setReload] = useState(true);
+
 
 	const [state, setState] = useState({
 
@@ -66,15 +69,9 @@ function App() {
 
 
 	useEffect(() => {
-		problem();
-	}, []);
-
-
-
-	function problem() {
-
-
-
+		
+		
+		// problem();
 		let data;
 		console.log("in function");
 		let path = "http://localhost:8000/problems/" + params.IDE;
@@ -87,6 +84,12 @@ function App() {
 				setState({
 					details: data
 				});
+				
+				setUserCode(data.code)
+	
+				
+				
+			
 				// On landing it will set id for compile to params.IDE
 				setId(params.IDE)
 			})
@@ -96,7 +99,21 @@ function App() {
 					setNotFound(true)
 			})
 
-	}
+		
+
+		
+	}, []);
+
+
+
+	// function problem() {
+
+
+
+	
+
+
+	// }
 
 	function setOutput() {
 		setInputOutput(false);
@@ -108,7 +125,7 @@ function App() {
 	// Function to call the compile endpoint
 	function compile() {
 		setLoading(true);
-		if (userCode === ``) {
+		if (userCode === "") {
 			return
 		}
 
@@ -121,7 +138,7 @@ function App() {
 		// formField.append('userCode', userCode)
 
 		// Post request to compile endpoint
-
+	
 
 		Axios({
 			method: 'post',
@@ -141,18 +158,34 @@ function App() {
 
 			})
 
+			Axios({
+				method:'patch',
+				url:'http://localhost:8000/problems/'+params.IDE+"/",
+				data:{'code':userCode}
+	
+			}).then((res)=>{ 
+				console.log(res.data['code'])
+			})
+			.catch(err=>{
+				console.log(err)
+			})
+
 		console.log("axious end")
 	}
+
 
 	// Function to clear the output screen
 	// function clearOutput() {
 	// 	setUserOutput("");
 	// }
 
+	
 	return (
+		
 		<div className="ide">
+			
 			<div className='ide-home' >
-				<NavLink style={{ textDecoration: "none", color: "white",fontSize:"16px" }} to="/" activeStyle>
+				<NavLink style={{ textDecoration: "none", color: "white",fontSize:"20px" }} to="/" activeStyle>
 					Home
 				</NavLink>
 			</div>
@@ -179,7 +212,7 @@ function App() {
 
 					</div>
 
-					<div className="ide-right-container" style={{ width: (params.IDE === "ide" ? ("99vw") : ("60%")) }}>
+					<div className="ide-right-container" style={{width:(params.IDE==="ide"?"100%":"cover")}} >
 
 
 
@@ -195,14 +228,14 @@ function App() {
 
 							<Editor id="ide-editor"
 								options={options}
-								height="63vh"
+								height="52vh"
 								width="100%"
 
 
 								theme={userTheme}
 								language={userLang}
 								defaultLanguage="python"
-								defaultValue="# Enter your code here"
+								defaultValue={userCode}
 								onChange={(value) => { setUserCode(value) }}
 
 							/>
