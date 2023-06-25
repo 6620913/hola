@@ -49,7 +49,7 @@ this.loading=true;
 							{this.state.details.map((detail,id) => (
 								<div className='problem' key={id}>
 
-										<NavLink to={"/" + detail.id} style={{ textDecoration: "None",color:"white"}}>
+										<NavLink to={"/hola.github.io/" + detail.id} style={{ textDecoration: "None",color:"white"}}>
 											{detail.id}{". "}{detail.problem}
 										</NavLink>
 						
