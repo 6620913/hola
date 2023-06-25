@@ -72,9 +72,10 @@ function App() {
 		
 		
 		// problem();
+		setLoading(true)
 		let data;
 		console.log("in function");
-		let path = "http://localhost:8000/problems/" + params.IDE;
+		let path = "https://holaapi.pythonanywhere.com/problems/" + params.IDE;
 		console.log(path);
 		axios.get(path)
 			.then(res => {
@@ -86,22 +87,25 @@ function App() {
 				});
 				
 				setUserCode(data.code)
-	
+				console.log(data.code)
+				setLoading(false)
 				
 				
 			
 				// On landing it will set id for compile to params.IDE
 				setId(params.IDE)
+
 			})
 			.catch(err => {
 				console.log(err)
 				if (params.IDE !== "ide")
 					setNotFound(true)
+				setLoading(false)
 			})
 
 		
 
-		
+			
 	}, []);
 
 
@@ -124,7 +128,7 @@ function App() {
 
 	// Function to call the compile endpoint
 	function compile() {
-		setLoading(true);
+		
 		if (userCode === "") {
 			return
 		}
@@ -142,7 +146,7 @@ function App() {
 
 		Axios({
 			method: 'post',
-			url: 'http://localhost:8000/compiler/',
+			url: 'https://holaapi.pythonanywhere.com/compiler/',
 			data: { 'id': Id, 'userLang': userLang, 'userInput': userInput, 'userInputType': userInputType, 'userCode': userCode }
 
 		}).then((res) => {
@@ -160,7 +164,7 @@ function App() {
 
 			Axios({
 				method:'patch',
-				url:'http://localhost:8000/problems/'+params.IDE+"/",
+				url:'https://holaapi.pythonanywhere.com/problems/'+params.IDE+"/",
 				data:{'code':userCode}
 	
 			}).then((res)=>{ 
@@ -179,7 +183,7 @@ function App() {
 	// 	setUserOutput("");
 	// }
 
-	
+	if(loading==false|| useParams.IDE=='ide'){
 	return (
 		
 		<div className="ide">
@@ -288,6 +292,7 @@ function App() {
 			)};
 		</div>
 	);
+							}
 }
 
 export default App;

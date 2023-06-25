@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, {useState}from 'react';
 import axios from 'axios';
 import Navbar from '../Components/Navbar';
 import '../Styles/main.css'
@@ -12,25 +12,31 @@ class App extends React.Component {
 	state = {
 		details: [],
 	}
+	loading = false;
 
 	componentDidMount() {
 
 		let data;
+this.loading=true;
 
-
-		axios.get('http://localhost:8000/problems/')
+		axios.get('https://holaapi.pythonanywhere.com/problems/')
 			.then(res => {
 				data = res.data;
 				this.setState({
 					details: data
 				});
+
+				
 			})
 			.catch(err => { 
 				console.log(err)
 			})
+
+			this.loading=false;
 	}
 
 	render() {
+		if(this.loading==false){
 		return (
 			<div>
 				<Navbar />
@@ -60,6 +66,7 @@ class App extends React.Component {
 
 			</div>
 		);
+	}
 	}
 }
 
