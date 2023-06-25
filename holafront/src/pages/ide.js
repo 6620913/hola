@@ -189,7 +189,7 @@ function App() {
 		<div className="ide">
 			
 			<div className='ide-home' >
-				<NavLink style={{ textDecoration: "none", color: "white",fontSize:"20px" }} to="/" activeStyle>
+				<NavLink style={{ textDecoration: "none", color: "white",fontSize:"20px" }} to="/hola.github.io/" activeStyle>
 					Home
 				</NavLink>
 			</div>

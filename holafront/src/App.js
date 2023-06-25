@@ -17,12 +17,12 @@ return (
 	<Router>
 	
 	<Routes basename={process.env.PUBLIC_URL}>
-		<Route exact path='/' element={<Home />} />
-		<Route path='/about' element={<About/>} />
-		<Route path='/contact' element={<Contact/>} />
-		<Route path='/problems' element={<Problems/>} />
-		<Route path='/signup' element={<SignUp/>} />
-        <Route path='/:IDE/' element={<IDE/>} />
+		<Route exact path='/hola.github.io/' element={<Home />} />
+		<Route path='/hola.github.io/about' element={<About/>} />
+		<Route path='/hola.github.io/contact' element={<Contact/>} />
+		<Route path='/hola.github.io/problems' element={<Problems/>} />
+		<Route path='/hola.github.io/signup' element={<SignUp/>} />
+        <Route path='/hola.github.io/:IDE/' element={<IDE/>} />
 	</Routes>
 	</Router>
 );

@@ -11,7 +11,7 @@ const Navbar = () => {
 
 			<nav class="navbar navbar-expand-lg navbar-dark ">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/" activeStyle>
+					<a class="navbar-brand" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/hola.github.io/" activeStyle>
 									Home
 								</NavLink></a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,12 +21,12 @@ const Navbar = () => {
 						<ul class="navbar-nav">
 					
 							<li class="nav-item">
-								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/problems" activeStyle>
+								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/hola.github.io/problems" activeStyle>
 									Problems
 								</NavLink></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/ide" activeStyle>
+								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/hola.github.io/ide" activeStyle>
 									IDE
 								</NavLink></a>
 							</li>
@@ -41,12 +41,12 @@ const Navbar = () => {
 
 							<li class="nav-item">
 								<a class="nav-link" href="#">
-									<NavLink style={{textDecoration:"none",color:"white"}} to="/about" activeStyle>
+									<NavLink style={{textDecoration:"none",color:"white"}} to="/hola.github.io/about" activeStyle>
 										About
 									</NavLink></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/contact" activeStyle>
+								<a class="nav-link" href="#"><NavLink style={{textDecoration:"none",color:"white"}} to="/hola.github.io/contact" activeStyle>
 									Contact Us
 								</NavLink></a>
 							</li>
